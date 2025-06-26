@@ -30,7 +30,7 @@ export const Publish = () => {
                 }
             });
             navigate(`/blog/${response.data.id}`)
-            }} type="submit" className="pt-2 inline-flex items-center px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 hover:bg-blue-800">
+            }} type="submit" className="text-sm font-mono border px-4 py-1 h-10 rounded-md hover:bg-black hover:text-white transition">
            Publish post
             </button>
         </div>

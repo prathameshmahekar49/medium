@@ -1,1 +1,6 @@
 @import "tailwindcss";
+body {
+  font-family: 'Gidole';
+  font-weight: 300;
+  background-color: rgb(255, 255, 255);
+}

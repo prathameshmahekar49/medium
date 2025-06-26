@@ -6,9 +6,16 @@ export interface Blog{
     "content":string;
     "title":string;
     "id":number;
+    "published":boolean;
+    "createdAt": string;
     "author":{
         "name":string
     }
+}
+export interface User {
+  id: string;
+  name: string;
+  email: string;
 }
 
 export const useBlog=({ id } : { id:string })=>{
@@ -50,3 +57,50 @@ export const useBlogs=()=>{
         loading,blogs
     }
 }
+
+export const useUser = () => {
+  const [user, setUser] = useState<User>();
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    axios
+      .get(`${BACKEND_URL}/api/v1/user/me`, {
+        headers: {
+          Authorization: localStorage.getItem("token"),
+        },
+      })
+      .then((res) => {
+        setUser(res.data.user);
+        setLoading(false);
+      })
+      .catch(() => {
+        setLoading(false);
+      });
+  }, []);
+
+  return {
+    user,
+    loading,
+  };
+};
+
+export const useUserBlogs = () => {
+  const [blogs, setBlogs] = useState<Blog[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    axios
+      .get(`${BACKEND_URL}/api/v1/blog/userBlogs`, {
+        headers: {
+          Authorization: localStorage.getItem("token"),
+        },
+      })
+      .then((res) => {
+        setBlogs(res.data.blogs);
+        setLoading(false);
+      })
+      .catch(() => setLoading(false));
+  }, []);
+
+  return { blogs, loading };
+};

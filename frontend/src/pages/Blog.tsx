@@ -18,6 +18,7 @@ export const Blog = () => {
       <BlogSkeleton/>
       <BlogSkeleton/>
       <BlogSkeleton/>
+
       </div>
     </div>
     </div>
