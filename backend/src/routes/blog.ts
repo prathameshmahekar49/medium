@@ -91,6 +91,7 @@ blogRouter.get('/bulk',async(c)=>{
             content:true,
             title:true,
             id:true,
+            createdAt: true,
             author:{
                 select:{
                     name:true
@@ -119,6 +120,7 @@ blogRouter.get('/:id', async(c) => {
                 id:true,
                 title:true,
                 content:true,
+                createdAt: true,
                 author:{
                     select:{
                         name:true
@@ -170,3 +172,31 @@ blogRouter.delete('/:id', async(c) => {
     }
 })
 
+blogRouter.get('/userBlogs', async (c) => {
+  const userId = c.get("userId"); // Already injected by auth middleware
+
+  const prisma = new PrismaClient({
+    datasourceUrl: c.env.DATABASE_URL,
+  }).$extends(withAccelerate());
+
+  const blogs = await prisma.blog.findMany({
+    where: {
+      authorId: userId,
+    },
+    select: {
+      id: true,
+      title: true,
+      content: true,
+      published: true,
+      createdAt: true,
+      author: {
+        select: {
+          name: true,
+        },
+      },
+      // Include timestamp if available (e.g., createdAt)
+    },
+  });
+
+  return c.json({ blogs });
+});
