@@ -1,10 +1,9 @@
-import { Link } from "react-router-dom";
 import { AppBar } from "../components/AppBar";
 import { useUser, useUserBlogs } from "../hooks";
 
 export const Profile = () => {
   const { user, loading: userLoading } = useUser();
-  const { blogs, loading: blogsLoading } = useUserBlogs();
+  const { loading: blogsLoading } = useUserBlogs();
 
   if (userLoading || blogsLoading) return <div className="p-10 text-center font-mono">Loading...</div>;
 
