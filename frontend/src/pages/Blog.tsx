@@ -23,6 +23,14 @@ export const Blog = () => {
     </div>
     </div>
   }
+  if (!blog) {
+    return (
+      <div>
+        <AppBar />
+        <div className="text-center text-gray-500 mt-10">Blog not found</div>
+      </div>
+    );
+  } 
   return <div>
       <FullBlog blog={blog}/>
   </div>
