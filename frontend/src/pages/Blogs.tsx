@@ -1,27 +1,11 @@
-import { useEffect, useState } from "react";
 import { AppBar } from "../components/AppBar"
 import { BlogCard } from "../components/BlogCard"
 import { BlogSkeleton } from "../components/BlogSkeleton";
-import { useBlogs ,useUser} from "../hooks"
+import { useBlogs } from "../hooks"
 
 export const Blogs = () => {
   const {loading,blogs}=useBlogs();
-  const [currentDate, setCurrentDate] = useState<string>("");
-  useEffect(() => {
-      const updateDate = () => {
-        const date = new Date();
-        const formatted = date.toLocaleDateString("en-US", {
-          year: "numeric",
-          month: "long",
-          day: "numeric",
-        });
-        setCurrentDate(formatted);
-      };
   
-      updateDate();
-      const intervalId = setInterval(updateDate, 1000);
-      return () => clearInterval(intervalId);
-    }, []);
 
   if(loading){
     return <div>

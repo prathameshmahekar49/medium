@@ -12,6 +12,9 @@
   "dependencies": {
     "@prathameshmahekar87/medium-common": "^1.0.0",
     "@tailwindcss/vite": "^4.0.15",
+    "@tiptap/extension-underline": "^2.22.3",
+    "@tiptap/react": "^2.22.3",
+    "@tiptap/starter-kit": "^2.22.3",
     "axios": "^1.8.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
